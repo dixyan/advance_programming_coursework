@@ -23,13 +23,13 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('ticket-count').textContent = seats.length;
     
     // Calculate and set prices
-    const ticketPrice = seats.length * 12;
-    const bookingFee = seats.length * 1.5;
+    const ticketPrice = seats.length * 200;
+    const bookingFee = seats.length * 10;
     const totalPrice = ticketPrice + bookingFee;
     
-    document.getElementById('ticket-price').textContent = `$${ticketPrice.toFixed(2)}`;
-    document.getElementById('confirmation-fee').textContent = `$${bookingFee.toFixed(2)}`;
-    document.getElementById('confirmation-total').textContent = `$${totalPrice.toFixed(2)}`;
+    document.getElementById('ticket-price').textContent = `Rs ${ticketPrice.toFixed(2)}`;
+    document.getElementById('confirmation-fee').textContent = `Rs ${bookingFee.toFixed(2)}`;
+    document.getElementById('confirmation-total').textContent = `Rs ${totalPrice.toFixed(2)}`;
   });
   
   function loadMovieData(movieId) {

@@ -150,8 +150,8 @@ document.addEventListener('DOMContentLoaded', function() {
   function updateSummary() {
     const selectedSeats = getSelectedSeats();
     const seatCount = selectedSeats.length;
-    const seatPrice = seatCount * 12;
-    const bookingFee = seatCount * 1.5;
+    const seatPrice = seatCount * 200;
+    const bookingFee = seatCount * 10;
     const totalPrice = seatPrice + bookingFee;
     
     // Update seat list
@@ -161,9 +161,9 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('seat-count').textContent = seatCount;
     
     // Update prices
-    document.getElementById('seats-price').textContent = `$${seatPrice.toFixed(2)}`;
-    document.getElementById('booking-fee').textContent = `$${bookingFee.toFixed(2)}`;
-    document.getElementById('total-price').textContent = `$${totalPrice.toFixed(2)}`;
+    document.getElementById('seats-price').textContent = `Rs${seatPrice.toFixed(2)}`;
+    document.getElementById('booking-fee').textContent = `Rs${bookingFee.toFixed(2)}`;
+    document.getElementById('total-price').textContent = `Rs${totalPrice.toFixed(2)}`;
     
     // Enable/disable checkout button
     document.getElementById('checkout-btn').disabled = seatCount === 0;

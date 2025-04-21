@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Register</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="login">Login</button>
+                <button class="tab-btn" data-tab="register">Register</button>
+            </div>
+            
+            <!-- Login Form -->
+            <div class="form-section active" id="login-form">
+                <h2>Welcome Back</h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <div class="input-group">
+                            <i class="fas fa-envelope icon"></i>
+                            <input type="email" id="loginEmail" placeholder="you@example.com" required>
+                        </div>
+                        <small class="error-message" id="loginEmailError"></small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <div class="input-group">
+                            <i class="fas fa-lock icon"></i>
+                            <input type="password" id="loginPassword" placeholder="••••••••" required>
+                            <i class="fas fa-eye-slash toggle-password"></i>
+                        </div>
+                        <small class="error-message" id="loginPasswordError"></small>
+                    </div>
+                    
+                    <div class="forgot-password">
+                        <a href="#">Forgot password?</a>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn" id="loginButton">
+                        <span>Login</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </form>
+            </div>
+            
+            <!-- Register Form -->
+            <div class="form-section" id="register-form">
+                <h2>Create Account</h2>
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="registerName">Full Name</label>
+                        <div class="input-group">
+                            <i class="fas fa-user icon"></i>
+                            <input type="text" id="registerName" placeholder="John Doe" required>
+                        </div>
+                        <small class="error-message" id="registerNameError"></small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="registerEmail">Email</label>
+                        <div class="input-group">
+                            <i class="fas fa-envelope icon"></i>
+                            <input type="email" id="registerEmail" placeholder="you@example.com" required>
+                        </div>
+                        <small class="error-message" id="registerEmailError"></small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="registerPassword">Password</label>
+                        <div class="input-group">
+                            <i class="fas fa-lock icon"></i>
+                            <input type="password" id="registerPassword" placeholder="••••••••" required>
+                            <i class="fas fa-eye-slash toggle-password"></i>
+                        </div>
+                        <small class="error-message" id="registerPasswordError"></small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <div class="input-group">
+                            <i class="fas fa-lock icon"></i>
+                            <input type="password" id="confirmPassword" placeholder="••••••••" required>
+                            <i class="fas fa-eye-slash toggle-password"></i>
+                        </div>
+                        <small class="error-message" id="confirmPasswordError"></small>
+                    </div>
+                    
+                    <div class="terms">
+                        <input type="checkbox" id="termsCheckbox">
+                        <label for="termsCheckbox">I agree to the <a href="#">Terms</a> and <a href="#">Privacy Policy</a></label>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn" id="registerButton">
+                        <span>Create Account</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </form>
+            </div>
+            
+            <!-- Footer -->
+            <div class="form-footer">
+                <p id="login-footer">Don't have an account? <a href="#" id="show-register">Sign up</a></p>
+                <p id="register-footer" style="display: none;">Already have an account? <a href="#" id="show-login">Log in</a></p>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
