@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CINEMANDU - book your tickets</title>
+  <title>ReelGood - book your tickets</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
   <script src="https://unpkg.com/feather-icons"></script>
@@ -12,15 +12,54 @@
   <div class="container">
     <header>
       <div class="header-content">
-        <div>
-          <h1>CINEMANDU</h1>
-          <p class="text-muted">Book your favorite movies with ease</p>
+        <div class="logo-container">
+          <img src="images/ReelGood.png" alt="ReelGood Logo" height="80" width="160">
         </div>
-        <div class="header-buttons">
-          <button class="btn btn-primary" onclick="location.href='login/index.html'">Sign In / Register</button>
+        
+        <nav class="main-navigation">
+          <ul class="nav-links">
+            <li><a href="index.html" class="nav-link active">Home</a></li>
+            <li><a href="movies.html" class="nav-link">Movies</a></li>
+            <li><a href="booking.html" class="nav-link">Booking</a></li>
+            <li><a href="help.html" class="nav-link">Help</a></li>
+          </ul>
+        </nav>
+        
+        <div class="user-button">
+          <button class="icon icon-user" onclick="location.href='../login/login.html'" title="login"> 
+            <i data-feather="user"></i>
+          </button>
         </div>
       </div>
     </header>
+
+    <!-- Featured Movies Slideshow -->
+    <div class="featured-slideshow">
+      <h2 class="slideshow-title">Now Showing</h2>
+      <div class="slideshow-container">
+        <button class="slideshow-nav prev" aria-label="Previous slide">
+          <i data-feather="chevron-left"></i>
+        </button>
+        
+        <div class="slides-wrapper">
+          <div class="slides">
+            <!-- Slides will be populated by JavaScript -->
+          </div>
+        </div>
+        
+        <button class="slideshow-nav next" aria-label="Next slide">
+          <i data-feather="chevron-right"></i>
+        </button>
+      </div>
+      
+      <div class="slideshow-indicators">
+        <!-- Indicators will be populated by JavaScript -->
+      </div>
+      
+      <div class="slideshow-controls">
+        <!-- Slideshow is automatic -->
+      </div>
+    </div>
 
     <div class="tabs">
       <div class="tabs-list">
@@ -41,6 +80,43 @@
       </div>
     </div>
   </div>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <img src="images/ReelGood.png" alt="ReelGood Logo" height="60" width="120">
+      </div>
+      
+      <div class="social-links">
+        <p>Follow Us:</p>
+        <div class="social-icons">
+          <a href="#" class="social-icon" aria-label="Facebook">
+            <i data-feather="facebook"></i>
+          </a>
+          <a href="#" class="social-icon" aria-label="Instagram">
+            <i data-feather="instagram"></i>
+          </a>
+          <a href="#" class="social-icon" aria-label="Twitter">
+            <i data-feather="twitter"></i>
+          </a>
+        </div>
+      </div>
+      
+      <div class="footer-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="faqs.html">FAQs</a>
+        <a href="about.html">About Us</a>
+      </div>
+      
+      <div class="contact-info">
+        <p>Contact: 9800000000 | reelgood.contact@gmail.com</p>
+      </div>
+      
+      <div class="copyright">
+        <p>©ReelGood 2025. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
 
   <template id="movie-card-template">
     <div class="movie-card">

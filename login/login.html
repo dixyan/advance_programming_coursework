@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ReelGood - Login</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="login.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="header-content">
+        <div class="logo-container">
+          <a href="../index.html">
+            <img src="../images/ReelGood.png" alt="ReelGood Logo" height="80" width="160">
+          </a>
+        </div>
+        
+        <nav class="main-navigation">
+          <ul class="nav-links">
+            <li><a href="../index.html" class="nav-link">Home</a></li>
+            <li><a href="../movies.html" class="nav-link">Movies</a></li>
+            <li><a href="../booking.html" class="nav-link">Booking</a></li>
+            <li><a href="../help.html" class="nav-link">Help</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <div class="login-page">
+      <div class="login-container">
+        <div class="login-form-container">
+          <div class="login-tabs">
+            <button class="login-tab-btn active" data-tab="login">Login</button>
+            <button class="login-tab-btn" data-tab="signup">Sign Up</button>
+          </div>
+          
+          <div class="login-form-section active" id="login-section">
+            <h2>Welcome Back</h2>
+            <form id="login-form">
+              <div class="login-form-group">
+                <label for="login-email">Email</label>
+                <div class="login-input-group">
+                  <i data-feather="mail" class="login-icon"></i>
+                  <input type="email" id="login-email" placeholder="Enter your email">
+                  <span class="login-error-message"></span>
+                </div>
+              </div>
+              
+              <div class="login-form-group">
+                <label for="login-password">Password</label>
+                <div class="login-input-group">
+                  <i data-feather="lock" class="login-icon"></i>
+                  <input type="password" id="login-password" placeholder="Enter your password">
+                  <i data-feather="eye" class="login-toggle-password"></i>
+                  <span class="login-error-message"></span>
+                </div>
+              </div>
+              
+              <div class="login-forgot-password">
+                <a href="#">Forgot password?</a>
+              </div>
+              
+              <button type="submit" class="login-submit-btn">
+                <span>Login</span>
+                <i data-feather="arrow-right"></i>
+              </button>
+            </form>
+          </div>
+          
+          <div class="login-form-section" id="signup-section">
+            <h2>Create Account</h2>
+            <form id="signup-form">
+              <div class="login-form-group">
+                <label for="signup-name">Full Name</label>
+                <div class="login-input-group">
+                  <i data-feather="user" class="login-icon"></i>
+                  <input type="text" id="signup-name" placeholder="Enter your full name">
+                  <span class="login-error-message"></span>
+                </div>
+              </div>
+              
+              <div class="login-form-group">
+                <label for="signup-email">Email</label>
+                <div class="login-input-group">
+                  <i data-feather="mail" class="login-icon"></i>
+                  <input type="email" id="signup-email" placeholder="Enter your email">
+                  <span class="login-error-message"></span>
+                </div>
+              </div>
+              
+              <div class="login-form-group">
+                <label for="signup-password">Password</label>
+                <div class="login-input-group">
+                  <i data-feather="lock" class="login-icon"></i>
+                  <input type="password" id="signup-password" placeholder="Create a password">
+                  <i data-feather="eye" class="login-toggle-password"></i>
+                  <span class="login-error-message"></span>
+                </div>
+              </div>
+              
+              <div class="login-terms">
+                <input type="checkbox" id="terms">
+                <label for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+              </div>
+              
+              <button type="submit" class="login-submit-btn">
+                <span>Create Account</span>
+                <i data-feather="arrow-right"></i>
+              </button>
+            </form>
+          </div>
+          
+          <div class="login-form-footer">
+            <p id="login-footer-text">Don't have an account? <a href="#" id="toggle-signup">Sign up</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <img src="../images/ReelGood.png" alt="ReelGood Logo" height="60" width="120">
+      </div>
+      
+      <div class="social-links">
+        <p>Follow Us:</p>
+        <div class="social-icons">
+          <a href="#" class="social-icon" aria-label="Facebook">
+            <i data-feather="facebook"></i>
+          </a>
+          <a href="#" class="social-icon" aria-label="Instagram">
+            <i data-feather="instagram"></i>
+          </a>
+          <a href="#" class="social-icon" aria-label="Twitter">
+            <i data-feather="twitter"></i>
+          </a>
+        </div>
+      </div>
+      
+      <div class="footer-links">
+        <a href="../privacy.html">Privacy Policy</a>
+        <a href="../faqs.html">FAQs</a>
+        <a href="../about.html">About Us</a>
+      </div>
+      
+      <div class="contact-info">
+        <p>Contact: 9800000000 | reelgood.contact@gmail.com</p>
+      </div>
+      
+      <div class="copyright">
+        <p>©ReelGood 2025. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../main.js"></script>
+  <script src="login.js"></script>
+</body>
+</html>
