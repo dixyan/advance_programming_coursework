@@ -1,0 +1,241 @@
+/* Movie Details Page Styles */
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    flex: 1;
+  }
+  
+  /* Back Link */
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.875rem;
+    color: var(--primary);
+    transition: color 0.2s ease;
+  }
+  
+  .back-link:hover {
+    color: var(--primary-hover);
+    text-decoration: underline;
+  }
+  
+  /* Movie Details Layout */
+  .movie-details {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  @media (min-width: 768px) {
+    .movie-details {
+      grid-template-columns: 300px 1fr;
+    }
+  }
+  
+  /* Movie Poster */
+  .movie-poster-large {
+    position: relative;
+    aspect-ratio: 2 / 3;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .movie-poster-large img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .movie-rating-badge {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+  
+  /* Movie Info */
+  .movie-info-detailed h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--foreground);
+  }
+  
+  .movie-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    color: var(--muted-foreground);
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+  }
+  
+  .separator {
+    color: var(--muted-foreground);
+  }
+  
+  .movie-rating-score {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 1.5rem 0;
+    font-size: 1.125rem;
+    font-weight: 500;
+  }
+  
+  .star-icon {
+    color: #f59e0b;
+  }
+  
+  #movie-description {
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  
+  .movie-cast,
+  .movie-director {
+    margin-bottom: 1.5rem;
+  }
+  
+  .movie-cast h2,
+  .movie-director h2 {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+    color: var(--foreground);
+  }
+  
+  /* Showtimes */
+  .showtimes-tabs {
+    margin-bottom: 2rem;
+  }
+  
+  .tabs-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .tab-trigger {
+    padding: 0.75rem;
+    background-color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-weight: 500;
+    cursor: pointer;
+    text-align: center;
+    color: var(--foreground);
+    transition: all 0.2s ease;
+  }
+  
+  .tab-trigger.active {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: var(--primary-foreground);
+  }
+  
+  .tab-trigger:hover:not(.active) {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+  
+  .tab-content {
+    display: none;
+  }
+  
+  .tab-content.active {
+    display: block;
+  }
+  
+  .showtimes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    padding-top: 0.5rem;
+  }
+  
+  @media (min-width: 768px) {
+    .showtimes-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .showtimes-grid {
+      grid-template-columns: repeat(6, 1fr);
+    }
+  }
+  
+  .showtimes-grid .btn {
+    text-align: center;
+    transition: all 0.2s ease;
+  }
+  
+  .showtimes-grid .btn:hover {
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+    transform: translateY(-2px);
+  }
+  
+  /* Theater Info */
+  .theater-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--muted-foreground);
+    font-size: 0.875rem;
+    margin-top: 1.5rem;
+  }
+  
+  .theater-info i {
+    color: var(--primary);
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .movie-info-detailed h1 {
+      font-size: 1.5rem;
+    }
+  
+    .movie-rating-score {
+      font-size: 1rem;
+    }
+  
+    .showtimes-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .tabs-list {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  /* Ensure the footer spans full width */
+  .site-footer {
+    width: 100%;
+    margin-top: auto;
+  }
+  
+  /* Make sure the footer content is centered */
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 1rem;
+  }
+  

@@ -3,75 +3,144 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Movie Details - CineTickets</title>
+  <title>Movie Details - ReelGood</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="movie-details.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-  <script src="https://unpkg.com/feather-icons"></script>
 </head>
 <body>
-  <div class="container">
-    <a href="index.html" class="back-link">← Back to movies</a>
-
-    <div class="movie-details">
-      <div class="movie-poster-large">
-        <img src="/placeholder.svg" alt="" id="movie-poster">
+  <div class="page-wrapper">
+    <header>
+      <div class="header-content">
+        <div class="logo-container">
+          <a href="index.html">
+            <img src="images/ReelGood.jpg" alt="ReelGood Logo" height="80" width="160">
+          </a>
+        </div>
+        
+        <nav class="main-navigation">
+          <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="movies.html" class="nav-link active">Movies</a></li>
+            <li><a href="booking.html" class="nav-link">Booking</a></li>
+            <li><a href="contact.html" class="nav-link">Help</a></li>
+          </ul>
+        </nav>
+        
+        <div class="user-button">
+          <button class="icon icon-user" onclick="location.href='login/index.html'" title="login"> 
+            <i class="fa-solid fa-user"></i>
+          </button>
+        </div>
       </div>
+    </header>
 
-      <div class="movie-info-detailed">
-        <h1 id="movie-title"></h1>
-        <div class="movie-meta">
-          <span id="movie-duration"></span>
-          <span class="separator">•</span>
-          <span id="movie-genre"></span>
-          <span class="separator">•</span>
-          <span id="movie-rating"></span>
+    <div class="container">
+      <a href="index.html" class="back-link">
+        <i class="fa-solid fa-arrow-left"></i> Back to movies
+      </a>
+
+      <div class="movie-details">
+        <div class="movie-poster-large">
+          <img src="/placeholder.svg" alt="" id="movie-poster">
+          <div class="movie-rating-badge" id="movie-rating-badge"></div>
         </div>
 
-        <div class="movie-rating-score">
-          <i data-feather="star" class="star-icon"></i>
-          <span id="rating-score"></span>
-        </div>
-
-        <p id="movie-description" class="text-muted"></p>
-
-        <div class="movie-cast">
-          <h2>Cast</h2>
-          <p id="movie-cast" class="text-muted"></p>
-        </div>
-
-        <div class="movie-director">
-          <h2>Director</h2>
-          <p id="movie-director" class="text-muted"></p>
-        </div>
-
-        <div class="showtimes-tabs">
-          <div class="tabs-list">
-            <button class="tab-trigger active" data-tab="today">Today</button>
-            <button class="tab-trigger" data-tab="tomorrow">Tomorrow</button>
-            <button class="tab-trigger" data-tab="day-after">Day After</button>
+        <div class="movie-info-detailed">
+          <h1 id="movie-title"></h1>
+          <div class="movie-meta">
+            <span id="movie-duration"></span>
+            <span class="separator">•</span>
+            <span id="movie-genre"></span>
+            <span class="separator">•</span>
+            <span id="movie-rating"></span>
           </div>
-          
-          <div class="tab-content active" id="today">
-            <div class="showtimes-grid" id="today-showtimes"></div>
-          </div>
-          
-          <div class="tab-content" id="tomorrow">
-            <div class="showtimes-grid" id="tomorrow-showtimes"></div>
-          </div>
-          
-          <div class="tab-content" id="day-after">
-            <div class="showtimes-grid" id="day-after-showtimes"></div>
-          </div>
-        </div>
 
-        <div class="theater-info">
-          <i data-feather="map-pin"></i>
-          <span>CineTickets Main Theater</span>
+          <div class="movie-rating-score">
+            <i class="fa-solid fa-star star-icon"></i>
+            <span id="rating-score"></span>
+          </div>
+
+          <p id="movie-description" class="text-muted"></p>
+
+          <div class="movie-cast">
+            <h2>Cast</h2>
+            <p id="movie-cast" class="text-muted"></p>
+          </div>
+
+          <div class="movie-director">
+            <h2>Director</h2>
+            <p id="movie-director" class="text-muted"></p>
+          </div>
+
+          <div class="showtimes-tabs">
+            <div class="tabs-list">
+              <button class="tab-trigger active" data-tab="today">Today</button>
+              <button class="tab-trigger" data-tab="tomorrow">Tomorrow</button>
+              <button class="tab-trigger" data-tab="day-after">Day After</button>
+            </div>
+            
+            <div class="tab-content active" id="today">
+              <div class="showtimes-grid" id="today-showtimes"></div>
+            </div>
+            
+            <div class="tab-content" id="tomorrow">
+              <div class="showtimes-grid" id="tomorrow-showtimes"></div>
+            </div>
+            
+            <div class="tab-content" id="day-after">
+              <div class="showtimes-grid" id="day-after-showtimes"></div>
+            </div>
+          </div>
+
+          <div class="theater-info">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>ReelGood Main Theater</span>
+          </div>
         </div>
       </div>
     </div>
+
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img src="images/ReelGood.jpg" alt="ReelGood Logo" height="60" width="120">
+        </div>
+        
+        <div class="social-links">
+          <p>Follow Us:</p>
+          <div class="social-icons">
+            <a href="#" class="social-icon" aria-label="Facebook">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-icon" aria-label="Instagram">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="#" class="social-icon" aria-label="Twitter">
+              <i class="fa-brands fa-twitter"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="footer-links">
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="faqs.html">FAQs</a>
+          <a href="about.html">About Us</a>
+        </div>
+        
+        <div class="contact-info">
+          <p>Contact: 9800000000 | reelgood.contact@gmail.com</p>
+        </div>
+        
+        <div class="copyright">
+          <p>©ReelGood 2025. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
   </div>
 
   <script src="movie-details.js"></script>
 </body>
 </html>
+
