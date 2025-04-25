@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ReelGood - Contact Us</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="contact.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header>
+      <div class="header-content">
+        <div class="logo-container">
+          <img src="images/ReelGood.jpg" alt="ReelGood Logo" height="80" width="160">
+        </div>
+        
+        <nav class="main-navigation">
+          <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="movies.html" class="nav-link">Movies</a></li>
+            <li><a href="booking.html" class="nav-link">Booking</a></li>
+            <li><a href="contact.html" class="nav-link active">Help</a></li>
+          </ul>
+        </nav>
+        
+        <div class="user-button">
+          <button class="icon icon-user" onclick="location.href='login/index.html'" title="login"> 
+            <i class="fa-solid fa-user"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="page-content">
+      <div class="contact-section">
+        <h1>Contact Us</h1>
+        <p class="contact-tagline">Mission Possible. Tom Cruise will be at your service soon.</p>
+        
+        <form id="contact-form" class="contact-form">
+          <div class="form-group">
+            <label for="contact-email">Email:</label>
+            <div class="input-group">
+              <input type="email" id="contact-email" placeholder="Enter your email">
+              <span class="error-message"></span>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="contact-message">Problem Faced:</label>
+            <div class="input-group">
+              <textarea id="contact-message" placeholder="Describe your issue in detail"></textarea>
+              <span class="error-message"></span>
+            </div>
+          </div>
+          
+          <button type="submit" class="submit-btn">
+            <span>Submit</span>
+            <i class="fa-solid fa-check"></i>
+          </button>
+        </form>
+      </div>
+      
+      <div class="faq-section">
+        <h2>FAQs</h2>
+        <p class="faq-tagline">"Lights, Camera... Clarification!"</p>
+        
+        <div class="faq-list">
+          <div class="faq-item">
+            <h3>1. How do I book a movie ticket on ReelGood?</h3>
+            <p>Browse movies, choose the preferred showtime and seats, and click "Book Now". You'll get a confirmation on-screen and via email—no paperwork!</p>
+          </div>
+          
+          <div class="faq-item">
+            <h3>2. Do I need to create an account to book tickets?</h3>
+            <p>Nope! Booking as a guest is available for convenience. However, signing up lets you track bookings, get reminders, and earn real-good perks in the future.</p>
+          </div>
+          
+          <div class="faq-item">
+            <h3>3. Can I cancel/modify my booking after payment?</h3>
+            <p>Yes, you can cancel your bookings after payment. Although, please double-check your selection before booking!</p>
+          </div>
+          
+          <div class="faq-item">
+            <h3>4. What payment methods does ReelGood accept?</h3>
+            <p>We accept major credit/debit cards and secure digital wallets. All transactions are encrypted for your safety—pay with peace of mind.</p>
+          </div>
+          
+          <div class="faq-item">
+            <h3>5. The movie I want isn't listed. What should I do?</h3>
+            <p>We're constantly updating our selection. If something's missing, check back soon or reach us through the Contact Us page—we're always listening behind the scenes!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img src="images/ReelGood.jpg" alt="ReelGood Logo" height="60" width="120">
+        </div>
+        
+        <div class="social-links">
+          <p>Follow Us:</p>
+          <div class="social-icons">
+            <a href="#" class="social-icon" aria-label="Facebook">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-icon" aria-label="Instagram">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="#" class="social-icon" aria-label="Twitter">
+              <i class="fa-brands fa-twitter"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="footer-links">
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="faqs.html">FAQs</a>
+          <a href="about.html">About Us</a>
+        </div>
+        
+        <div class="contact-info">
+          <p>Contact: 9800000000 | reelgood.contact@gmail.com</p>
+        </div>
+        
+        <div class="copyright">
+          <p>©ReelGood 2025. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="main.js"></script>
+  <script src="contact.js"></script>
+</body>
+</html>

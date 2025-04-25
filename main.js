@@ -1,14 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Initialize Feather icons
-  feather.replace()
-
-  // Re-initialize Feather icons if they're added dynamically
-  document.addEventListener("DOMNodeInserted", (e) => {
-    if (e.target.querySelector && e.target.querySelector("[data-feather]")) {
-      feather.replace()
-    }
-  })
-
   // Tab functionality
   const tabTriggers = document.querySelectorAll(".tab-trigger")
   tabTriggers.forEach((trigger) => {
@@ -36,16 +26,13 @@ document.addEventListener("DOMContentLoaded", () => {
   loadMovies()
 })
 
-// Declare feather variable
-const feather = window.feather
-
 // Slideshow functionality
 function initSlideshow() {
   const featuredMovies = [
     {
       id: "3",
       title: "Karma",
-      posterUrl: "images/karma.jpeg",
+      posterUrl: "images/karma.jpg",
       rating: "PG-13",
       releaseDate: "April 11, 2025",
     },
@@ -66,7 +53,7 @@ function initSlideshow() {
     {
       id: "6",
       title: "Basanta",
-      posterUrl: "images/basanta.jpeg",
+      posterUrl: "images/basanta.jpg",
       rating: "R",
       releaseDate: "January 20, 2025",
     },
@@ -212,7 +199,7 @@ function loadMovies() {
     {
       id: "6",
       title: "Basanta",
-      posterUrl: "images/basanta.jpeg",
+      posterUrl: "images/basanta.jpg",
       rating: "R",
       duration: "2h 40m",
       genre: "Drama/Romance",
@@ -230,14 +217,14 @@ function loadMovies() {
     {
       id: "8",
       title: "Jaat",
-      posterUrl: "images/jaat.jpeg",
+      posterUrl: "images/jaat.jpg",
       duration: "2h 34m",
       genre: "Action/Drama/Thriller",
     },
     {
       id: "9",
       title: "Karma",
-      posterUrl: "images/karma.jpeg",
+      posterUrl: "images/karma.jpg",
       duration: "2h 15m",
       genre: "Action/Drama",
     },
