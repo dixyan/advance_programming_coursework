@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Movie | Movie Booking System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2>Admin Movie</h2>
+                <button class="close-sidebar" id="closeSidebar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active">
+                        <a href="admin-dashboard.html">
+                            <i class="fas fa-film"></i>
+                            <span>Movies</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="admin-theaters.html">
+                            <i class="fas fa-building"></i>
+                            <span>Theaters</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="admin-users.html">
+                            <i class="fas fa-users"></i>
+                            <span>Users</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="admin-orders.html">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>Orders</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="admin-reports.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Report</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="admin-info">
+                    <div class="admin-avatar">A</div>
+                    <span>administrator</span>
+                </div>
+                <a href="admin-login.html" class="logout-link">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <header class="main-header">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="header-right"></div>
+            </header>
+
+            <main class="content">
+                <div class="content-header">
+                    <h1>Edit Movie</h1>
+                </div>
+
+                <div class="card">
+                    <form id="movieForm" class="movie-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="title">Movie Title</label>
+                                <input type="text" id="title" placeholder="Enter movie title" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="status">Status</label>
+                                <select id="status" required>
+                                    <option value="Coming Soon">Coming Soon</option>
+                                    <option value="Now Showing">Now Showing</option>
+                                    <option value="Ended">Ended</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea id="description" rows="5" placeholder="Enter movie description"></textarea>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Duration</label>
+                                <div class="duration-inputs">
+                                    <input type="number" id="durationHours" placeholder="Hours" min="0" max="10">
+                                    <input type="number" id="durationMinutes" placeholder="Minutes" min="0" max="59">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="price">Price</label>
+                                <input type="number" id="price" placeholder="Enter price" min="0" step="0.01">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="startDate">Showing Schedule</label>
+                                <input type="date" id="startDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="endDate">End Date</label>
+                                <input type="date" id="endDate">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Cover Image</label>
+                            <div class="cover-upload">
+                                <div class="cover-preview" id="coverPreview">
+                                    <!-- Image will be inserted here -->
+                                </div>
+                                <div class="upload-options">
+                                    <label for="coverImage" class="btn btn-outline">
+                                        <i class="fas fa-upload"></i> Choose file
+                                    </label>
+                                    <input type="file" id="coverImage" accept="image/*" style="display: none;">
+                                    <button type="button" class="btn btn-outline">Browse</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="hidden" id="movieId">
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-outline" onclick="window.location.href='admin-dashboard.html'">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize the admin interface
+            initAdminInterface();
+            
+            // Get movie ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const movieId = parseInt(urlParams.get('id'));
+            
+            if (!movieId) {
+                alert('No movie ID provided');
+                window.location.href = 'admin-dashboard.html';
+                return;
+            }
+            
+            // Get movie data
+            const movie = getMovieById(movieId);
+            if (!movie) {
+                alert('Movie not found');
+                window.location.href = 'admin-dashboard.html';
+                return;
+            }
+            
+            // Populate form with movie data
+            document.getElementById('movieId').value = movie.id;
+            document.getElementById('title').value = movie.title;
+            document.getElementById('description').value = movie.description || '';
+            document.getElementById('durationHours').value = movie.durationHours || 0;
+            document.getElementById('durationMinutes').value = movie.durationMinutes || 0;
+            document.getElementById('price').value = movie.price || '';
+            document.getElementById('status').value = movie.status;
+            
+            if (movie.startDate) {
+                document.getElementById('startDate').value = movie.startDate;
+            }
+            
+            if (movie.endDate) {
+                document.getElementById('endDate').value = movie.endDate;
+            }
+            
+            // Display cover image
+            const coverPreview = document.getElementById('coverPreview');
+            if (movie.coverImage) {
+                coverPreview.innerHTML = `<img src="${movie.coverImage}" alt="${movie.title}">`;
+            } else {
+                coverPreview.innerHTML = `<span>No image selected</span>`;
+            }
+            
+            // Handle image upload preview
+            document.getElementById('coverImage').addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        coverPreview.innerHTML = `<img src="${event.target.result}" alt="Cover Preview">`;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Form submission
+            document.getElementById('movieForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const updatedMovie = {
+                    id: movieId,
+                    title: document.getElementById('title').value,
+                    description: document.getElementById('description').value,
+                    durationHours: parseInt(document.getElementById('durationHours').value),
+                    durationMinutes: parseInt(document.getElementById('durationMinutes').value),
+                    price: parseFloat(document.getElementById('price').value),
+                    startDate: document.getElementById('startDate').value,
+                    endDate: document.getElementById('endDate').value,
+                    status: document.getElementById('status').value,
+                    coverImage: document.querySelector('#coverPreview img')?.src || null
+                };
+                
+                updateMovie(updatedMovie);
+                alert('Movie updated successfully!');
+                window.location.href = 'admin-dashboard.html';
+            });
+        });
+    </script>
+</body>
+</html>
