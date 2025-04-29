@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Theaters | Movie Booking System</title>
+    <title>Theater Management | Movie Booking System</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="admin-styles.css">
 </head>
 <body>
     <div class="admin-container">
@@ -32,9 +33,15 @@
                         </a>
                     </li>
                     <li>
-                        <a href="admin-users.html">
+                        <a href="admin-users-management.html">
+                            <i class="fas fa-user-shield"></i>
+                            <span>Admin Users</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="admin-customers.html">
                             <i class="fas fa-users"></i>
-                            <span>Users</span>
+                            <span>Customers</span>
                         </a>
                     </li>
                     <li>
@@ -79,18 +86,86 @@
 
             <main class="content">
                 <div class="content-header">
-                    <h1>Theaters</h1>
-                    <button class="btn btn-primary">
-                        <i class="fas fa-plus"></i> Add Theater
+                    <h1>Theater Management</h1>
+                    <button class="btn btn-primary" id="addTheaterBtn">
+                        <i class="fas fa-plus"></i> Add New Theater
                     </button>
                 </div>
 
                 <div class="card">
-                    <div class="card-body">
-                        <p class="text-center py-8 text-gray-500">Theater management will be implemented soon.</p>
-                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Theater Name</th>
+                                <th>Location</th>
+                                <th>Screens</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="theaterTableBody">
+                            <!-- Theater data will be inserted here by JavaScript -->
+                        </tbody>
+                    </table>
                 </div>
             </main>
+        </div>
+    </div>
+
+    <!-- Add Theater Modal -->
+    <div class="modal" id="addTheaterModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New Theater</h2>
+                <button class="close-modal" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="addTheaterForm">
+                    <div class="form-group">
+                        <label for="theaterName">Theater Name</label>
+                        <input type="text" id="theaterName" placeholder="Enter theater name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="theaterLocation">Location</label>
+                        <input type="text" id="theaterLocation" placeholder="Enter location" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="theaterScreens">Number of Screens</label>
+                            <input type="number" id="theaterScreens" min="1" value="1" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="theaterStatus">Status</label>
+                            <select id="theaterStatus" required>
+                                <option value="Active">Active</option>
+                                <option value="Under Maintenance">Under Maintenance</option>
+                                <option value="Coming Soon">Coming Soon</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="theaterAddress">Address</label>
+                        <textarea id="theaterAddress" rows="3" placeholder="Enter full address"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="theaterContact">Contact Number</label>
+                        <input type="tel" id="theaterContact" placeholder="Enter contact number">
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" id="cancelAddTheater">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Add Theater</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
@@ -99,7 +174,160 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Initialize the admin interface
             initAdminInterface();
+            
+            // Initialize theaters if not already done
+            initializeTheaters();
+            
+            // Load and display theaters
+            displayTheaters();
+            
+            // Modal functionality
+            const modal = document.getElementById('addTheaterModal');
+            const addTheaterBtn = document.getElementById('addTheaterBtn');
+            const closeModal = document.getElementById('closeModal');
+            const cancelAddTheater = document.getElementById('cancelAddTheater');
+            
+            addTheaterBtn.addEventListener('click', function() {
+                modal.classList.add('show');
+            });
+            
+            closeModal.addEventListener('click', function() {
+                modal.classList.remove('show');
+            });
+            
+            cancelAddTheater.addEventListener('click', function() {
+                modal.classList.remove('show');
+            });
+            
+            // Form submission
+            const addTheaterForm = document.getElementById('addTheaterForm');
+            
+            addTheaterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const theaterData = {
+                    id: Date.now(),
+                    name: document.getElementById('theaterName').value,
+                    location: document.getElementById('theaterLocation').value,
+                    screens: parseInt(document.getElementById('theaterScreens').value),
+                    status: document.getElementById('theaterStatus').value,
+                    address: document.getElementById('theaterAddress').value,
+                    contact: document.getElementById('theaterContact').value
+                };
+                
+                addTheater(theaterData);
+                displayTheaters();
+                
+                // Reset form and close modal
+                addTheaterForm.reset();
+                modal.classList.remove('show');
+                
+                alert('Theater added successfully!');
+            });
         });
+        
+        // Initialize theaters in localStorage
+        function initializeTheaters() {
+            if (!localStorage.getItem('theaters')) {
+                const defaultTheaters = [
+                    {
+                        id: 1,
+                        name: "CineStar Multiplex",
+                        location: "Downtown",
+                        screens: 8,
+                        status: "Active",
+                        address: "123 Main Street, Downtown",
+                        contact: "+1 (555) 123-4567"
+                    },
+                    {
+                        id: 2,
+                        name: "MovieMax IMAX",
+                        location: "Westside Mall",
+                        screens: 6,
+                        status: "Active",
+                        address: "456 West Avenue, Westside Mall",
+                        contact: "+1 (555) 987-6543"
+                    },
+                    {
+                        id: 3,
+                        name: "FilmHouse Deluxe",
+                        location: "Eastside",
+                        screens: 4,
+                        status: "Under Maintenance",
+                        address: "789 East Boulevard, Eastside",
+                        contact: "+1 (555) 456-7890"
+                    }
+                ];
+                localStorage.setItem('theaters', JSON.stringify(defaultTheaters));
+            }
+        }
+        
+        // Get theaters from localStorage
+        function getTheaters() {
+            return JSON.parse(localStorage.getItem('theaters') || '[]');
+        }
+        
+        // Add a new theater
+        function addTheater(theaterData) {
+            const theaters = getTheaters();
+            theaters.push(theaterData);
+            localStorage.setItem('theaters', JSON.stringify(theaters));
+        }
+        
+        // Display theaters in the table
+        function displayTheaters() {
+            const theaters = getTheaters();
+            const tableBody = document.getElementById('theaterTableBody');
+            tableBody.innerHTML = '';
+            
+            theaters.forEach((theater, index) => {
+                const row = document.createElement('tr');
+                
+                // Determine status class
+                let statusClass = 'active';
+                if (theater.status === 'Under Maintenance') {
+                    statusClass = 'pending';
+                } else if (theater.status === 'Coming Soon') {
+                    statusClass = 'inactive';
+                }
+                
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${theater.name}</td>
+                    <td>${theater.location}</td>
+                    <td>${theater.screens}</td>
+                    <td>
+                        <span class="status-badge ${statusClass}">${theater.status}</span>
+                    </td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="btn btn-icon" onclick="editTheater(${theater.id})">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn btn-icon btn-danger" onclick="confirmDeleteTheater(${theater.id})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+        
+        // Delete theater
+        function confirmDeleteTheater(id) {
+            if (confirm('Are you sure you want to delete this theater?')) {
+                const theaters = getTheaters();
+                const updatedTheaters = theaters.filter(theater => theater.id !== id);
+                localStorage.setItem('theaters', JSON.stringify(updatedTheaters));
+                displayTheaters();
+            }
+        }
+        
+        // Edit theater (placeholder function)
+        function editTheater(id) {
+            alert('Edit functionality will be implemented in the future.');
+        }
     </script>
 </body>
 </html>

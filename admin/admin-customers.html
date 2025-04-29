@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Management | Movie Booking System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="admin-styles.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2>Admin Movie</h2>
+                <button class="close-sidebar" id="closeSidebar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="admin-dashboard.html">
+                            <i class="fas fa-film"></i>
+                            <span>Movies</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="admin-theaters.html">
+                            <i class="fas fa-building"></i>
+                            <span>Theaters</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="admin-users-management.html">
+                            <i class="fas fa-user-shield"></i>
+                            <span>Admin Users</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="admin-customers.html">
+                            <i class="fas fa-users"></i>
+                            <span>Customers</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="admin-orders.html">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>Orders</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="admin-reports.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Report</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="admin-info">
+                    <div class="admin-avatar">A</div>
+                    <span>administrator</span>
+                </div>
+                <a href="admin-login.html" class="logout-link">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <header class="main-header">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="header-right">
+                    <div class="admin-info">
+                        <div class="admin-avatar">A</div>
+                        <span>administrator</span>
+                    </div>
+                </div>
+            </header>
+
+            <main class="content">
+                <div class="content-header">
+                    <h1>Customer Management</h1>
+                    <div class="search-container">
+                        <input type="text" id="customerSearch" placeholder="Search customers..." class="search-input">
+                        <button class="btn btn-outline" id="searchBtn">
+                            <i class="fas fa-search"></i> Search
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="filter-container">
+                            <label for="statusFilter">Filter by Status:</label>
+                            <select id="statusFilter" class="filter-select">
+                                <option value="all">All Customers</option>
+                                <option value="active">Active</option>
+                                <option value="inactive">Inactive</option>
+                                <option value="pending">Pending Verification</option>
+                            </select>
+                        </div>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Joined Date</th>
+                                <th>Status</th>
+                                <th>Orders</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="customerTableBody">
+                            <!-- Customer data will be inserted here by JavaScript -->
+                        </tbody>
+                    </table>
+                    <div class="pagination">
+                        <button class="btn btn-outline pagination-btn" id="prevPage" disabled>
+                            <i class="fas fa-chevron-left"></i> Previous
+                        </button>
+                        <span class="pagination-info">Page <span id="currentPage">1</span> of <span id="totalPages">1</span></span>
+                        <button class="btn btn-outline pagination-btn" id="nextPage" disabled>
+                            Next <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- View Customer Modal -->
+    <div class="modal" id="viewCustomerModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Customer Details</h2>
+                <button class="close-modal" id="closeViewModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="customer-details">
+                    <div class="customer-profile">
+                        <div class="customer-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="customer-name" id="modalCustomerName">John Doe</div>
+                        <div class="customer-status" id="modalCustomerStatus">Active</div>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h3>Contact Information</h3>
+                        <div class="detail-row">
+                            <div class="detail-label">Email:</div>
+                            <div class="detail-value" id="modalCustomerEmail">john@example.com</div>
+                        </div>
+                        <div class="detail-row">
+                            <div class="detail-label">Phone:</div>
+                            <div class="detail-value" id="modalCustomerPhone">+1 (555) 123-4567</div>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h3>Account Information</h3>
+                        <div class="detail-row">
+                            <div class="detail-label">Member Since:</div>
+                            <div class="detail-value" id="modalCustomerJoined">Jan 15, 2023</div>
+                        </div>
+                        <div class="detail-row">
+                            <div class="detail-label">Total Orders:</div>
+                            <div class="detail-value" id="modalCustomerOrders">12</div>
+                        </div>
+                        <div class="detail-row">
+                            <div class="detail-label">Last Login:</div>
+                            <div class="detail-value" id="modalCustomerLastLogin">Today, 10:45 AM</div>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h3>Recent Orders</h3>
+                        <table class="detail-table">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Date</th>
+                                    <th>Movie</th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody id="modalCustomerRecentOrders">
+                                <!-- Recent orders will be inserted here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button class="btn btn-outline" id="resetPasswordBtn">
+                            <i class="fas fa-key"></i> Reset Password
+                        </button>
+                        <button class="btn btn-outline" id="toggleStatusBtn">
+                            <i class="fas fa-ban"></i> <span id="toggleStatusText">Deactivate</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize the admin interface
+            initAdminInterface();
+            
+            // Initialize customers if not already done
+            initializeCustomers();
+            
+            // Load and display customers
+            displayCustomers();
+            
+            // Search functionality
+            const searchInput = document.getElementById('customerSearch');
+            const searchBtn = document.getElementById('searchBtn');
+            
+            searchBtn.addEventListener('click', function() {
+                const searchTerm = searchInput.value.toLowerCase();
+                filterCustomers(searchTerm);
+            });
+            
+            searchInput.addEventListener('keyup', function(e) {
+                if (e.key === 'Enter') {
+                    const searchTerm = searchInput.value.toLowerCase();
+                    filterCustomers(searchTerm);
+                }
+            });
+            
+            // Status filter
+            const statusFilter = document.getElementById('statusFilter');
+            statusFilter.addEventListener('change', function() {
+                filterCustomersByStatus(this.value);
+            });
+            
+            // Modal functionality
+            const viewModal = document.getElementById('viewCustomerModal');
+            const closeViewModal = document.getElementById('closeViewModal');
+            
+            closeViewModal.addEventListener('click', function() {
+                viewModal.classList.remove('show');
+            });
+            
+            // Pagination
+            const prevPageBtn = document.getElementById('prevPage');
+            const nextPageBtn = document.getElementById('nextPage');
+            
+            prevPageBtn.addEventListener('click', function() {
+                if (currentPage > 1) {
+                    currentPage--;
+                    displayCustomers();
+                }
+            });
+            
+            nextPageBtn.addEventListener('click', function() {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    displayCustomers();
+                }
+            });
+        });
+        
+        // Pagination variables
+        let currentPage = 1;
+        const itemsPerPage = 10;
+        let totalPages = 1;
+        
+        // Initialize customers in localStorage
+        function initializeCustomers() {
+            if (!localStorage.getItem('customers')) {
+                const defaultCustomers = [
+                    {
+                        id: 1,
+                        name: "John Doe",
+                        email: "john@example.com",
+                        phone: "+1 (555) 123-4567",
+                        joinedDate: "2023-01-15",
+                        status: "Active",
+                        orders: 12,
+                        lastLogin: "2023-06-15 10:45:00"
+                    },
+                    {
+                        id: 2,
+                        name: "Jane Smith",
+                        email: "jane@example.com",
+                        phone: "+1 (555) 987-6543",
+                        joinedDate: "2023-02-20",
+                        status: "Active",
+                        orders: 8,
+                        lastLogin: "2023-06-14 15:30:00"
+                    },
+                    {
+                        id: 3,
+                        name: "Robert Johnson",
+                        email: "robert@example.com",
+                        phone: "+1 (555) 456-7890",
+                        joinedDate: "2023-03-10",
+                        status: "Inactive",
+                        orders: 3,
+                        lastLogin: "2023-05-20 09:15:00"
+                    },
+                    {
+                        id: 4,
+                        name: "Emily Davis",
+                        email: "emily@example.com",
+                        phone: "+1 (555) 234-5678",
+                        joinedDate: "2023-04-05",
+                        status: "Pending Verification",
+                        orders: 0,
+                        lastLogin: "2023-04-05 14:20:00"
+                    },
+                    {
+                        id: 5,
+                        name: "Michael Wilson",
+                        email: "michael@example.com",
+                        phone: "+1 (555) 876-5432",
+                        joinedDate: "2023-05-12",
+                        status: "Active",
+                        orders: 5,
+                        lastLogin: "2023-06-13 11:10:00"
+                    }
+                ];
+                localStorage.setItem('customers', JSON.stringify(defaultCustomers));
+            }
+        }
+        
+        // Get customers from localStorage
+        function getCustomers() {
+            return JSON.parse(localStorage.getItem('customers') || '[]');
+        }
+        
+        // Display customers in the table
+        function displayCustomers(filteredCustomers = null) {
+            const customers = filteredCustomers || getCustomers();
+            const tableBody = document.getElementById('customerTableBody');
+            tableBody.innerHTML = '';
+            
+            // Calculate pagination
+            totalPages = Math.ceil(customers.length / itemsPerPage);
+            document.getElementById('totalPages').textContent = totalPages;
+            document.getElementById('currentPage').textContent = currentPage;
+            
+            // Enable/disable pagination buttons
+            document.getElementById('prevPage').disabled = currentPage === 1;
+            document.getElementById('nextPage').disabled = currentPage === totalPages || totalPages === 0;
+            
+            // Get current page items
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const currentPageItems = customers.slice(startIndex, endIndex);
+            
+            if (currentPageItems.length === 0) {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td colspan="7" class="text-center">No customers found</td>
+                `;
+                tableBody.appendChild(row);
+                return;
+            }
+            
+            currentPageItems.forEach((customer, index) => {
+                const row = document.createElement('tr');
+                
+                // Determine status class
+                let statusClass = 'active';
+                if (customer.status === 'Inactive') {
+                    statusClass = 'inactive';
+                } else if (customer.status === 'Pending Verification') {
+                    statusClass = 'pending';
+                }
+                
+                // Format date
+                const joinedDate = new Date(customer.joinedDate);
+                const formattedDate = joinedDate.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                });
+                
+                row.innerHTML = `
+                    <td>${startIndex + index + 1}</td>
+                    <td>${customer.name}</td>
+                    <td>${customer.email}</td>
+                    <td>${formattedDate}</td>
+                    <td>
+                        <span class="status-badge ${statusClass}">${customer.status}</span>
+                    </td>
+                    <td>${customer.orders}</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="btn btn-icon" onclick="viewCustomer(${customer.id})">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="btn btn-icon btn-danger" onclick="confirmDeleteCustomer(${customer.id})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+        
+        // Filter customers by search term
+        function filterCustomers(searchTerm) {
+            if (!searchTerm) {
+                displayCustomers();
+                return;
+            }
+            
+            const customers = getCustomers();
+            const filtered = customers.filter(customer => {
+                return (
+                    customer.name.toLowerCase().includes(searchTerm) ||
+                    customer.email.toLowerCase().includes(searchTerm)
+                );
+            });
+            
+            currentPage = 1;
+            displayCustomers(filtered);
+        }
+        
+        // Filter customers by status
+        function filterCustomersByStatus(status) {
+            if (status === 'all') {
+                displayCustomers();
+                return;
+            }
+            
+            const customers = getCustomers();
+            const filtered = customers.filter(customer => {
+                return customer.status.toLowerCase() === status;
+            });
+            
+            currentPage = 1;
+            displayCustomers(filtered);
+        }
+        
+        // View customer details
+        function viewCustomer(id) {
+            const customers = getCustomers();
+            const customer = customers.find(c => c.id === id);
+            
+            if (customer) {
+                // Populate modal with customer data
+                document.getElementById('modalCustomerName').textContent = customer.name;
+                document.getElementById('modalCustomerStatus').textContent = customer.status;
+                document.getElementById('modalCustomerEmail').textContent = customer.email;
+                document.getElementById('modalCustomerPhone').textContent = customer.phone;
+                
+                const joinedDate = new Date(customer.joinedDate);
+                document.getElementById('modalCustomerJoined').textContent = joinedDate.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                });
+                
+                document.getElementById('modalCustomerOrders').textContent = customer.orders;
+                
+                const lastLogin = new Date(customer.lastLogin);
+                document.getElementById('modalCustomerLastLogin').textContent = lastLogin.toLocaleString('en-US');
+                
+                // Set toggle status button text
+                const toggleStatusText = document.getElementById('toggleStatusText');
+                toggleStatusText.textContent = customer.status === 'Active' ? 'Deactivate' : 'Activate';
+                
+                // Show modal
+                document.getElementById('viewCustomerModal').classList.add('show');
+                
+                // Add event listeners for modal buttons
+                document.getElementById('resetPasswordBtn').onclick = function() {
+                    alert(`Password reset email sent to ${customer.email}`);
+                };
+                
+                document.getElementById('toggleStatusBtn').onclick = function() {
+                    toggleCustomerStatus(id);
+                };
+                
+                // Populate recent orders (mock data for demo)
+                const recentOrdersTable = document.getElementById('modalCustomerRecentOrders');
+                recentOrdersTable.innerHTML = '';
+                
+                if (customer.orders > 0) {
+                    // Generate mock order data
+                    for (let i = 0; i < Math.min(customer.orders, 5); i++) {
+                        const orderRow = document.createElement('tr');
+                        const orderDate = new Date();
+                        orderDate.setDate(orderDate.getDate() - i * 3); // Mock different dates
+                        
+                        orderRow.innerHTML = `
+                            <td>ORD-${100000 + i}</td>
+                            <td>${orderDate.toLocaleDateString()}</td>
+                            <td>${['The Matrix', 'Inception', 'Avengers', 'Jurassic Park', 'Star Wars'][i]}</td>
+                            <td>$${(Math.random() * 30 + 10).toFixed(2)}</td>
+                        `;
+                        recentOrdersTable.appendChild(orderRow);
+                    }
+                } else {
+                    const noOrdersRow = document.createElement('tr');
+                    noOrdersRow.innerHTML = `
+                        <td colspan="4" class="text-center">No orders found</td>
+                    `;
+                    recentOrdersTable.appendChild(noOrdersRow);
+                }
+            }
+        }
+        
+        // Toggle customer status
+        function toggleCustomerStatus(id) {
+            const customers = getCustomers();
+            const index = customers.findIndex(c => c.id === id);
+            
+            if (index !== -1) {
+                customers[index].status = customers[index].status === 'Active' ? 'Inactive' : 'Active';
+                localStorage.setItem('customers', JSON.stringify(customers));
+                
+                // Update modal
+                document.getElementById('modalCustomerStatus').textContent = customers[index].status;
+                const toggleStatusText = document.getElementById('toggleStatusText');
+                toggleStatusText.textContent = customers[index].status === 'Active' ? 'Deactivate' : 'Activate';
+                
+                // Refresh table
+                displayCustomers();
+                
+                alert(`Customer status updated to ${customers[index].status}`);
+            }
+        }
+        
+        // Delete customer
+        function confirmDeleteCustomer(id) {
+            if (confirm('Are you sure you want to delete this customer?')) {
+                const customers = getCustomers();
+                const updatedCustomers = customers.filter(customer => customer.id !== id);
+                localStorage.setItem('customers', JSON.stringify(updatedCustomers));
+                displayCustomers();
+            }
+        }
+    </script>
+</body>
+</html>
