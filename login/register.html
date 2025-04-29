@@ -3,57 +3,62 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ReelGood - Login</title>
+  <title>ReelGood - Create Account</title>
   <link rel="stylesheet" href="../style.css">
-  <link rel="stylesheet" href="login.css">
+  <link rel="stylesheet" href="register.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 </head>
-<body >
- </div>
+<body>
+  <div class="container">
     <div class="login-page">
       <div class="login-container">
-        <div class="login-form-container">    
-          <div class="login-form-section active" id="login-section">
-            <picture>
-              <img src="../images/ReelGood.jpg" alt="logo" style="width: 200px;height: 200; "class="center"> 
-
-            </picture>
-            <form id="login-form">
+        <div class="login-form-container"> 
+          <div class="login-form-section active" id="signup-section">
+            <h2>Create Account</h2>
+            <form id="signup-form">
               <div class="login-form-group">
-                <label for="login-email">Email</label>
+                <label for="signup-name">Full Name</label>
                 <div class="login-input-group">
-                  <i class="fa-solid fa-envelope login-icon"></i>
-                  <input type="email" id="login-email">
+                  <i class="fa-solid fa-user login-icon"></i>
+                  <input type="text" id="signup-name" placeholder="Enter your full name">
                   <span class="login-error-message"></span>
                 </div>
               </div>
               
               <div class="login-form-group">
-                <label for="login-password">Password</label>
+                <label for="signup-email">Email</label>
+                <div class="login-input-group">
+                  <i class="fa-solid fa-envelope login-icon"></i>
+                  <input type="email" id="signup-email" placeholder="Enter your email">
+                  <span class="login-error-message"></span>
+                </div>
+              </div>
+              
+              <div class="login-form-group">
+                <label for="signup-password">Password</label>
                 <div class="login-input-group">
                   <i class="fa-solid fa-lock login-icon"></i>
-                  <input type="password" id="login-password">
+                  <input type="password" id="signup-password" placeholder="Create a password">
                   <i class="fa-solid fa-eye login-toggle-password"></i>
                   <span class="login-error-message"></span>
                 </div>
               </div>
               
-              <div class="login-forgot-password">
-                <a href="#">Forgot password?</a>
+              <div class="login-terms">
+                <input type="checkbox" id="terms">
+                <label for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
               </div>
               
               <button type="submit" class="login-submit-btn">
-                <span>Login</span>
+                <span>Create Account</span>
                 <i class="fa-solid fa-arrow-right"></i>
               </button>
             </form>
           </div>
           
-          
-          
           <div class="login-form-footer">
-            <p id="login-footer-text">Don't have an account? <a href="register.html" >Sign up</a></p>
+            <p id="login-footer-text">Already have an account? <a href="login.html">Login</a></p>
           </div>
         </div>
       </div>
@@ -61,6 +66,6 @@
   </div>
 
   <script src="../main.js"></script>
-  <script src="login.js"></script>
+  <script src="register.js"></script>
 </body>
 </html>
