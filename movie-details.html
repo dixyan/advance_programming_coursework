@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Movie Details - ReelGood</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="movie-details.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 </head>
@@ -54,6 +53,8 @@
             <span class="separator">•</span>
             <span id="movie-genre"></span>
             <span class="separator">•</span>
+            <span id="movie-language"></span>
+            <span class="separator">•</span>
             <span id="movie-rating"></span>
           </div>
 
@@ -63,6 +64,11 @@
           </div>
 
           <p id="movie-description" class="text-muted"></p>
+
+          <div class="movie-release-date">
+            <h3>Release-date</h3>
+            <p id="movie-release-date" class="text-muted"></p>
+          </div>
 
           <div class="movie-cast">
             <h2>Cast</h2>
@@ -140,7 +146,7 @@
     </footer>
   </div>
 
-  <script src="movie-details.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>
 

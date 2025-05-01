@@ -107,11 +107,13 @@
     margin-bottom: 1.5rem;
   }
   
+  .movie-release-date,
   .movie-cast,
   .movie-director {
     margin-bottom: 1.5rem;
   }
   
+  .movie-release-date h3,
   .movie-cast h2,
   .movie-director h2 {
     font-size: 1.125rem;

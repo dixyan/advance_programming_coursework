@@ -36,10 +36,12 @@ function loadMovieDetails(movieId) {
       posterUrl: "images/movie.jpg",
       rating: "PG-13",
       rating_score: 8.7,
+      language: "English",
       duration: "2h 45m",
       genre: "Sci-Fi/Adventure",
       description:
         "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival. As they journey to another galaxy, they face the harsh realities of interstellar travel and the mysteries of the universe.",
+      release: "2024/01/23",
       cast: "Matthew McConaughey, Anne Hathaway, Jessica Chastain, Michael Caine",
       director: "Christopher Nolan",
     },
@@ -137,6 +139,9 @@ function loadMovieDetails(movieId) {
   document.getElementById("movie-description").textContent = movie.description
   document.getElementById("movie-cast").textContent = movie.cast
   document.getElementById("movie-director").textContent = movie.director
+  document.getElementById("movie-release-date").textContent = movie.release
+  document.getElementById("movie-language").textContent = movie.language
+  
 
   // Set rating badge
   const ratingBadge = document.getElementById("movie-rating-badge")

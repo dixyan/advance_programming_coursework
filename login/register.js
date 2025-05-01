@@ -30,6 +30,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const name = document.getElementById("signup-name")
       const email = document.getElementById("signup-email")
       const password = document.getElementById("signup-password")
+      const number = document.getElementById("signup-phone")
+      const address = document.getElementById("address")
       const terms = document.getElementById("terms")
       let isValid = true
   
@@ -56,6 +58,15 @@ document.addEventListener("DOMContentLoaded", () => {
         showError(password, "Password must be at least 8 characters")
         isValid = false
       }
+
+      // Phone-number validation
+      if (!number.value) {
+        showError(number, "Phone Number is required")
+        isValid = false
+      } else if (number.value.length < 10) {
+        showError(number, "Enter a valid number")
+        isValid = false
+      }
   
       // Terms checkbox validation
       if (!terms.checked) {
@@ -74,6 +85,8 @@ document.addEventListener("DOMContentLoaded", () => {
             name: name.value,
             email: email.value,
             password: password.value,
+            number : number.value,
+            address : address.value,
           })
   
           // Remove loading state

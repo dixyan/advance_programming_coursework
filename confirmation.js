@@ -78,8 +78,9 @@ function loadMovieData(movieId) {
   document.getElementById("movie-meta").textContent = `${movie.rating} • ${movie.duration}`
 }
 
+// Generate a random booking ID
 function generateBookingId() {
-  // Generate a random booking ID
+  
   return Math.random().toString(36).substring(2, 10).toUpperCase()
 }
 
